@@ -1,28 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class Spawner : MonoBehaviour
 {
     public GameObject spawnPrefab;
     public Transform parentObject;
+    public TMP_Text beeCountText;
+    public TMP_Text multiplierText;
+
+
+    public int beeCount = 0;
+    public int beeMultiplier = 1;
 
 
     private void Start()
     {
-        /* for(int i=0; i<100; i++)
-         {
-             SpawnObject();
-         }
-        */
+       
+    }
 
+    public void IncreaseBeeMultiplier(int increaseBy)
+    {
+        beeMultiplier += increaseBy;
+
+        if (beeMultiplier != null)
+        {
+            multiplierText.text = beeMultiplier.ToString();
+        }
+    }
+    public void SpawnMultipleObjects()
+    {
         int count = 0;
-        while (count < 0)
+        while (count < beeMultiplier)
         {
             count += 1;
             SpawnObject();
         }
-
     }
 
 
@@ -33,8 +48,20 @@ public class Spawner : MonoBehaviour
             parentObject.rotation,
             parentObject
             );
+        
+
+        beeCount++;
+
+        if(beeCount != null)
+        {
+            beeCountText.text = beeCount.ToString();
+        }
+
+        
     }
 
+    
+    
     
 
 
